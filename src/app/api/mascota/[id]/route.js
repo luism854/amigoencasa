@@ -28,10 +28,12 @@ export async function PUT(request, {params}){
         const data = await request.formData();
         const photofile = data.get("photo")
 
-        const bytes = await photofile.arrayBuffer()
-        const buffer = Buffer.from(bytes)
-        const filePath = path.join(process.cwd(), 'public/img', photofile.name)
-        await writeFile(filePath, buffer)
+        if(photofile.name){
+            const bytes = await photofile.arrayBuffer()
+            const buffer = Buffer.from(bytes)
+            const filePath = path.join(process.cwd(), 'public/uploads', photofile.name)
+            await writeFile(filePath, buffer)
+        }
 
         const newPet = await prisma.pets.update({
             where: {
@@ -41,7 +43,7 @@ export async function PUT(request, {params}){
                 name: data.get("name"),
                 race_id: parseInt(data.get("race_id")),
                 category_id: parseInt(data.get("category_id")),
-                photo: photofile.name,
+                photo: photofile.name ? `/uploads/${photofile.name}` : photofile,
                 gender_id: parseInt(data.get("gender_id"))
             }
         })
@@ -63,27 +65,6 @@ export async function PUT(request, {params}){
         })
     }
 }
-
-// export async function PUT(request, {params}){
-//     try {
-//         let idPet = Number(params.id);
-//         const {name,race_id,category_id,photo,gender_id} = await request.json();
-//         const response = await prisma.pets.update({
-//             where: {id: idPet},
-//             data: {name,race_id,category_id,photo,gender_id}
-//         })
-//         return new Response(JSON.stringify({ message: 'Mascota actualizada', response }),
-//         {headers:{'Content-Type': 'application/json'},
-//         status: 200
-//         })
-//     } catch (error) {
-//         console.log(error)
-//         return new Response(JSON.stringify({ message: error.message }),
-//         {headers:{'Content-Type': 'application/json'},
-//         status: 404
-//         }) 
-//     }
-// }
 
 export async function GET(request, {params}){
     let idPet = Number(params.id);

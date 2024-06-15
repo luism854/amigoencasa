@@ -2,10 +2,21 @@ import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 import { writeFile } from 'fs/promises'
 import path from "path";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/route";
 
 const prisma = new PrismaClient();
 
-export async function GET(){
+export async function GET(req, res){
+
+    const session = await getServerSession({ req, res, authOptions });
+
+    if(!session){
+        return new Response(JSON.stringify({ message: 'No autorizado' }), {
+            status: 404
+        });
+    }
+
     try {
         const petlist = await prisma.pets.findMany({
             include: {
@@ -47,7 +58,7 @@ export async function POST(request){
                 name: data.get("name"),
                 race_id: parseInt(data.get("race_id")),
                 category_id: parseInt(data.get("category_id")),
-                photo: photofile.name,
+                photo: `/img/${photofile.name}`,
                 gender_id: parseInt(data.get("gender_id"))
             }
         })

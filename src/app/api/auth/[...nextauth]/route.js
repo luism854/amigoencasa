@@ -7,7 +7,7 @@ import { redirect } from "next/dist/server/api-utils";
 
 const prisma = new PrismaClient();
 
-const authOptions = {
+export const authOptions = {
     providers: [
         CredentialsProvider({
             name: 'Credentials',

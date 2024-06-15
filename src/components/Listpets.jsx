@@ -27,12 +27,10 @@ const updateMascota = (pet) => {
     router.push(`/actualizarpet/${pet.id}`)
 }
 
-const listarPets = async() =>{
-    await axios.get('/api/mascota')
-    .then(response =>{
-        setPets(response.data)
-    })
-}
+const listarPets = async () => {
+    const response = await axios.get('/api/mascota');
+    setPets(response.data)
+  };
 
 useEffect(()=>{
     listarPets();
@@ -43,7 +41,7 @@ useEffect(()=>{
         {pets.map(pet => (
             <div key={pet.id} className='flex justify-between items-center bg-gray-200 hover:bg-gray-300 p-4 my-3 rounded-xl'>
                 <div className='flex items-center gap-4'>
-                    <img className='h-[65px] w-[65px] bg-yellow-400 rounded-full' src={`/img/${pet.photo}`}  alt={`${pet.name}`}  />
+                    <img className='h-[65px] w-[65px] bg-white rounded-full' src={pet.photo}  alt={`${pet.name}`}  />
                     <div>
                         <p className='font-bold'>{pet.name}</p>
                         <p className='text-[0.8em]'>{pet.fk_race.name}</p>

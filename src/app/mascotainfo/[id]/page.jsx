@@ -30,7 +30,7 @@ useEffect(()=>{
             <div className='w-full flex justify-center my-20'>
                 {pet.photo && (
                     <img
-                    className='bg-white h-[110px] w-[110px] flex justify-center items-center text-[20px] rounded-full border-4 text-blue-400 border-blue-400' src={`/img/${pet.photo}`} alt={`${pet.name}`}
+                    className='bg-white h-[110px] w-[110px] flex justify-center items-center text-[20px] rounded-full border-4 text-blue-400 border-blue-400' src={pet.photo} alt={`${pet.name}`}
                     />
                 )}
             </div>
