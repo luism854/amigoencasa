@@ -1,0 +1,484 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "API documentacion",
+        "description": "documentacion para la api mascotas",
+        "version": "1.0.0"
+    },
+    "host": "locahost:3000",
+    "basePath": "/api",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/mascota": {
+            "get": {
+                "summary": "Lista las mascotas",
+                "responses": {
+                    "200": {
+                        "description": "Mascotas listadas",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Mascota"
+                            }
+                        },
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": 1,
+                                    "name": "marco",
+                                    "race": "pitbull",
+                                    "category": "perro",
+                                    "iphoto": "photo.png",
+                                    "gender": "Masculineo"
+                                },
+                                {
+                                    "id": 2,
+                                    "name": "marco",
+                                    "race": "pitbull",
+                                    "category": "perro",
+                                    "iphoto": "photo.png",
+                                    "gender": "Masculineo"
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Registrar mascotas",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "example": {
+                                "name": "marco",
+                                "race": "pitbull",
+                                "category": "perro",
+                                "iphoto": "photo.png",
+                                "gender": "Masculineo"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Mascota registrada con exito",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Mascota"
+                            }
+                        },
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": 1,
+                                    "name": "marco",
+                                    "race": "pitbull",
+                                    "category": "perro",
+                                    "iphoto": "photo.png",
+                                    "gender": "Masculineo"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/mascotas/id": {
+            "put": {
+                "summary": "Actualizar mascota",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "example": {
+                                "name": "marco update",
+                                "race": "pitbull",
+                                "category": "perro",
+                                "iphoto": "photo.png",
+                                "gender": "Masculineo"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "mascota actualizada",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Mascota"
+                            }
+                        },
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": 1,
+                                    "name": "marco update",
+                                    "race": "pitbull",
+                                    "category": "perro",
+                                    "iphoto": "photo.png",
+                                    "gender": "Masculineo"
+                                },
+                                {
+                                    "id": 2,
+                                    "name": "marco",
+                                    "race": "pitbull",
+                                    "category": "perro",
+                                    "iphoto": "photo.png",
+                                    "gender": "Masculineo"
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "Buscar mascota",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "example": {
+                                "id": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Mascota listar",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Mascota"
+                            }
+                        },
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": 1,
+                                    "name": "marco",
+                                    "race": "pitbull",
+                                    "category": "perro",
+                                    "iphoto": "photo.png",
+                                    "gender": "Masculineo"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/registrar": {
+            "post": {
+                "summary": "Registrar usuario",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "example": {
+                                "fullname": "pedro",
+                                "email": "pedro@gmail.com",
+                                "password": "12345"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "usuario registrado con exito",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/auth"
+                            }
+                        },
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": 1,
+                                    "fullname": "pedro",
+                                    "email": "pedro@gmail.com",
+                                    "password": "12345"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/category": {
+            "get": {
+                "summary": "Listar las categoria",
+                "responses": {
+                    "200": {
+                        "description": "categorias listadas",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/category"
+                            }
+                        },
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": 1,
+                                    "name": "perro"
+                                },
+                                {
+                                    "id": 2,
+                                    "name": "gato"
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Registrar categoria",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "example": {
+                                "name": "perro"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "categoria registrada",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/category"
+                            }
+                        },
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": 2,
+                                    "name": "perro"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/gender": {
+            "get": {
+                "summary": "Listar los generos",
+                "responses": {
+                    "200": {
+                        "description": "generos listados",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/gender"
+                            }
+                        },
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": 1,
+                                    "name": "Masculino"
+                                },
+                                {
+                                    "id": 2,
+                                    "name": "Femenino"
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Registrar categoria",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "example": {
+                                "name": "Maculino"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "categoria registrada",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/gender"
+                            }
+                        },
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": 2,
+                                    "name": "Maculino"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/raza": {
+            "get": {
+                "summary": "Listar las razas",
+                "responses": {
+                    "200": {
+                        "description": "razas listados",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/raza"
+                            }
+                        },
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": 1,
+                                    "name": "Pitbull"
+                                },
+                                {
+                                    "id": 2,
+                                    "name": "Pincher"
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Registrar raza",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "example": {
+                                "name": "Samoyedo"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "raza registrada",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/raza"
+                            }
+                        },
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": 1,
+                                    "name": "Samoyedo"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Mascota": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "race": {
+                    "type": "integer"
+                },
+                "category": {
+                    "type": "integer"
+                },
+                "photo": {
+                    "type": "String"
+                },
+                "gerder": {
+                    "type": "integer"
+                }
+            }
+        },
+        "auth": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "fullname": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "email"
+                },
+                "password": {
+                    "type": "integer"
+                }
+            }
+        },
+        "category": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "gender": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "raza": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
